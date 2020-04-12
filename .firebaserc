@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "poker-188a0": {
+      "hosting": {
+        "poker": [
+          "poker-188a0"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "poker-188a0"
+  }
+}

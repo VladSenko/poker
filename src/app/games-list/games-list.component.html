@@ -1,0 +1,20 @@
+<div class="games-list">
+    <table class="table table-striped games-list__table" *ngIf="games?.length">
+        <thead>
+            <tr>
+                <th scope="col">Скоко нас</th>
+                <th scope="col">Колода</th>
+                <th scope="col">По скоко іграєм</th>
+                <th scope="col">Шпіліть</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let game of games">
+                <th scope="row">{{ game.playersCount }}</th>
+                <td>{{ game.cardsStack }}</td>
+                <td>{{ game.maxCards }}</td>
+                <td><a [routerLink]="['/game', game.id]" class="btn btn-primary">Го</a></td>
+            </tr>
+        </tbody>
+    </table>
+</div>

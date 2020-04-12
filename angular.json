@@ -121,8 +121,13 @@
               "devServerTarget": "poker:serve:production"
             }
           }
+        },
+        "deploy": {
+          "builder": "@angular/fire:deploy",
+          "options": {}
         }
       }
-    }},
+    }
+  },
   "defaultProject": "poker"
 }

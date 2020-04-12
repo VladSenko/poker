@@ -1,0 +1,104 @@
+<div class="create-game">
+    <div class="row">
+        <div class="col-sm-12">
+            <button
+                type="button"
+                class="btn btn-dark create-game__button"
+                (click)="openCreateGameDialog(createGameDialog)"
+            >
+                Создать
+            </button>
+        </div>
+    </div>
+
+    <div class="row">
+        <app-games-list></app-games-list>
+    </div>
+</div>
+
+<ng-template #createGameDialog let-modal>
+    <div class="modal-header">
+        <h4 class="modal-title" id="modal-basic-title">Нова гра</h4>
+        <button
+            type="button"
+            class="close"
+            aria-label="Close"
+            (click)="modal.dismiss('Cross click')"
+        >
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body">
+        <div class="form-group">
+            <label for="players-number">Скоко нас?</label>
+            <select
+                id="players-number"
+                class="custom-select"
+                [(ngModel)]="playersCount"
+            >
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label for="cards-stack">Колода</label>
+            <select
+                id="cards-stack"
+                class="custom-select"
+                [(ngModel)]="cardsStack"
+            >
+                <option value="36">36</option>
+                <option value="53">53</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label for="max-cards">По скоко іграєм?</label>
+            <select id="max-cards" class="custom-select" [(ngModel)]="maxCards">
+                <option value="5" [disabled]="cardsStack / playersCount < 5"
+                    >5</option
+                >
+                <option value="6" [disabled]="cardsStack / playersCount < 6"
+                    >6</option
+                >
+                <option value="7" [disabled]="cardsStack / playersCount < 7"
+                    >7</option
+                >
+                <option value="8" [disabled]="cardsStack / playersCount < 8"
+                    >8</option
+                >
+                <option value="9" [disabled]="cardsStack / playersCount < 9"
+                    >9</option
+                >
+                <option value="10" [disabled]="cardsStack / playersCount < 10"
+                    >10</option
+                >
+            </select>
+        </div>
+
+        <div
+            class="alert alert-danger"
+            role="alert"
+            *ngIf="playersCount * maxCards > cardsStack"
+        >
+            Не хватить карт!
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button
+            type="button"
+            class="btn btn-outline-dark"
+            [disabled]="
+                !playersCount ||
+                !cardsStack ||
+                !maxCards ||
+                playersCount * maxCards > cardsStack
+            "
+            (click)="createGame()"
+        >
+            Создать
+        </button>
+    </div>
+</ng-template>
