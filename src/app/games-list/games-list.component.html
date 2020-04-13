@@ -10,10 +10,16 @@
         </thead>
         <tbody>
             <tr *ngFor="let game of games">
-                <th scope="row">{{ game.playersCount }}</th>
+                <th scope="row">
+                    {{ game.players.length }}/{{ game.playersMaxCount }}
+                </th>
                 <td>{{ game.cardsStack }}</td>
                 <td>{{ game.maxCards }}</td>
-                <td><a [routerLink]="['/game', game.id]" class="btn btn-primary">Го</a></td>
+                <td>
+                    <a [routerLink]="['/game', game.id]" class="btn btn-primary"
+                        >Го</a
+                    >
+                </td>
             </tr>
         </tbody>
     </table>

@@ -34,7 +34,8 @@ export class CreateGameComponent implements OnInit {
     public createGame(): void {
         this.gamesCollection.add({
             id: this.afs.createId(),
-            playersCount: this.playersCount,
+            playersMaxCount: this.playersCount,
+            players: [],
             maxCards: this.maxCards,
             cardsStack: this.cardsStack,
         });

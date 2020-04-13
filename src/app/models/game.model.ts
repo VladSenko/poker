@@ -1,6 +1,7 @@
 export interface Game {
     id: string;
-    playersCount: number;
+    playersMaxCount: number;
+    players: any[];
     maxCards: number;
     cardsStack: number;
 }
