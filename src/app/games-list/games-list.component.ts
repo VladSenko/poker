@@ -7,6 +7,7 @@ import { Game } from '../models/game.model';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { User } from '../models/user.model';
 import { Router } from '@angular/router';
+import * as _ from 'lodash';
 
 @Component({
     selector: 'app-games-list',
@@ -30,6 +31,7 @@ export class GamesListComponent implements OnInit {
             .valueChanges()
             .subscribe((games: Game[]) => {
                 this.games = games;
+                console.log(this.games);
             });
 
         this.afs
@@ -50,7 +52,11 @@ export class GamesListComponent implements OnInit {
     public navigateToGame(): void {
         this.modalService.dismissAll();
         if (this.selectedUserId && this.selectedGameId) {
-            localStorage.setItem('user', this.selectedUserId.toString());
+            const selectedUser = _.find(
+                this.users,
+                (user) => user.id === +this.selectedUserId
+            );
+            localStorage.setItem('user', JSON.stringify(selectedUser));
             this.router.navigate(['/game', this.selectedGameId]);
         }
     }

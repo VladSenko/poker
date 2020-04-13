@@ -30,8 +30,9 @@ export class CreateGameComponent implements OnInit {
     }
 
     public createGame(): void {
-        this.gamesCollection.add({
-            id: this.afs.createId(),
+        const id = this.afs.createId();
+        this.gamesCollection.doc(id).set({
+            id,
             playersMaxCount: this.playersCount,
             players: [],
             maxCards: this.maxCards,
