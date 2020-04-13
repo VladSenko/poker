@@ -16,11 +16,45 @@
                 <td>{{ game.cardsStack }}</td>
                 <td>{{ game.maxCards }}</td>
                 <td>
-                    <a [routerLink]="['/game', game.id]" class="btn btn-primary"
-                        >Го</a
+                    <button
+                        type="button"
+                        class="btn btn-primary"
+                        (click)="openSetUserDialog(setUserDialog, game.id)"
                     >
+                        Го
+                    </button>
                 </td>
             </tr>
         </tbody>
     </table>
 </div>
+
+<ng-template #setUserDialog let-modal>
+    <div class="modal-header">
+        <h4 class="modal-title" id="modal-basic-title">Шо за тіп?</h4>
+    </div>
+    <div class="modal-body">
+        <div class="form-group">
+            <label for="user-name">Хто ти?</label>
+            <select
+                id="user-name"
+                class="custom-select"
+                [(ngModel)]="selectedUserId"
+            >
+                <option *ngFor="let user of users" [value]="user.id">{{
+                    user.name
+                }}</option>
+            </select>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button
+            type="button"
+            class="btn btn-outline-dark"
+            [disabled]="!selectedUserId"
+            (click)="navigateToGame()"
+        >
+            Зайти
+        </button>
+    </div>
+</ng-template>
